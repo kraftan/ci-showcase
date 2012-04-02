@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sportsGround>
+<name>My Ground</name>
+<numberOfSportCourts>2</numberOfSportCourts>
+<sport>
+<name>Basketball</name>
+</sport>
+</sportsGround>

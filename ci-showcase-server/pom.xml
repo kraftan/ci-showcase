@@ -1,0 +1,382 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.comerge.ci</groupId>
+    <artifactId>ci-showcase-server</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Comerge CI Showcase</name>
+    <packaging>war</packaging>
+
+    <organization>
+        <name>Comerge AG</name>
+        <url>http://www.comerge.net/</url>
+    </organization>
+
+    <scm>
+        <url>https://</url>
+    </scm>
+    <ciManagement>
+        <system>Hudson</system>
+    </ciManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jboss.home>/opt/jboss-as-7</jboss.home>
+        <jboss.domain>default</jboss.domain>
+        <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+        <jta.data.source>java:/jboss/datasources/ExampleDS</jta.data.source>
+        <hbm2ddl.auto>create-drop</hbm2ddl.auto>
+        <show.sql>false</show.sql>
+        <format.sql>false</format.sql>
+
+        <!-- Versions -->
+        <arquillian.version>1.0.0.CR7</arquillian.version>
+        <arqullian-jacoco.version>1.0.0.Alpha2</arqullian-jacoco.version>
+        <commons-lang.version>2.4</commons-lang.version>
+        <hamcrest.version>1.2.1</hamcrest.version>
+        <jacoco.version>0.5.3.201107060350</jacoco.version>
+        <javaee-web.version>2.0.0.Final</javaee-web.version>
+        <jboss.version>7.1.0.Final</jboss.version>
+        <jre.version>1.6</jre.version>
+        <junit.version>4.8.2</junit.version>
+        <hibernate-validator.version>4.2.0.Final</hibernate-validator.version>
+        <maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
+        <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+        <maven-eclipse-plugin.version>2.8</maven-eclipse-plugin.version>
+        <maven-failsafe-plugin.version>2.10</maven-failsafe-plugin.version>
+        <maven-war-plugin.version>2.1.1</maven-war-plugin.version>
+        <mockito.version>1.8.5</mockito.version>
+        <serializer.version>2.7.1-1.jbossorg</serializer.version>
+        <shrinkwrap-maven.version>1.0.0-beta-6</shrinkwrap-maven.version>
+        <wtp.version>2.0</wtp.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>repo1.maven.org</id>
+            <url>http://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>repository.jboss.org</id>
+            <name>JBoss Repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+        </repository>
+    </repositories>
+
+    <!-- For JBoss-AS plugin -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jboss-public-repository</id>
+            <name>JBoss Repository</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencies>
+        <!-- Bean Validation Implementation -->
+        <!-- Provides portable constraints such as @NotEmpty, @Email and 
+            @Url -->
+        <!-- Hibernate Validator is only the JSR-303 implementation at the 
+            moment, so we can assume it's provided -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- The complete J6EE stack in one BOM -->
+        <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-web-6.0</artifactId>
+            <version>${javaee-web.version}</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons-lang.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <version>${arquillian.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.protocol</groupId>
+            <artifactId>arquillian-protocol-servlet</artifactId>
+            <version>${arquillian.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+            <version>${shrinkwrap-maven.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xalan</groupId>
+            <artifactId>serializer</artifactId>
+            <version>${serializer.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- Get rid of the Maven version tag in the build name -->
+        <finalName>${project.artifactId}</finalName>
+        <!-- Process persistence.xml resource to configure persistence unit 
+            for test and deployment -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <!-- Compiler plugin enforces Java 1.6 compatiblity -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${jre.version}</source>
+                    <target>${jre.version}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Eclipse plugin can force download of source and JavaDoc 
+                jars -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>${maven-eclipse-plugin.version}</version>
+                <configuration>
+                    <wtpversion>${wtp.version}</wtpversion>
+                </configuration>
+            </plugin>
+
+            <!-- Configure the JBoss AS Maven deploy plugin -->
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>${jboss.version}</version>
+                <configuration>
+                    <filename>${project.build.finalName}.war</filename>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Failsafe plugin for integration-testing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+            </plugin>
+
+            <!-- Adding dependencies to war file -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <archive>
+                        <manifestEntries>
+                            <Dependencies>org.apache.commons.lang</Dependencies>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <profiles>
+        <profile>
+            <id>jenkins</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jboss.as.plugins</groupId>
+                        <artifactId>jboss-as-maven-plugin</artifactId>
+                        <version>${jboss.version}</version>
+                        <configuration>
+                            <filename>${project.build.finalName}.war</filename>
+                            <username>uzh</username>
+                            <password>ci-showcase</password>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- An optional Arquillian testing profile that executes tests 
+                in your JBoss AS instance -->
+            <!-- This profile will start a new JBoss AS instance, and execute 
+                the test, shutting it down when done -->
+            <!-- Run with: mvn clean test -Parq-jbossas-managed -->
+            <id>arq-jbossas-managed</id>
+            <properties>
+                <hbm2ddl.auto>create-drop</hbm2ddl.auto>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.as</groupId>
+                    <artifactId>jboss-as-arquillian-container-managed</artifactId>
+                    <version>${jboss.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <!-- An optional Arquillian testing profile that executes tests 
+                in a remote JBoss AS instance -->
+            <!-- Run with: mvn clean test -Parq-jbossas-remote -->
+            <id>arq-jbossas-remote</id>
+            <properties>
+                <hbm2ddl.auto>create-drop</hbm2ddl.auto>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.as</groupId>
+                    <artifactId>jboss-as-arquillian-container-remote</artifactId>
+                    <version>${jboss.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>jacoco</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.extension</groupId>
+                    <artifactId>arquillian-jacoco</artifactId>
+                    <version>${arqullian-jacoco.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>org.jacoco.core</artifactId>
+                    <version>${jacoco.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco.version}</version>
+                        <configuration>
+                            <dataFile>${project.build.directory}/jacoco-integration.exec</dataFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>${maven-antrun-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <!-- Unfortunatly, we cannot run antrun:run, 
+                                    the antrun plugin has to. Use of a lifecycle phase that does not interfere 
+                                    with any other phase during integration-test -->
+                                <phase>pre-site</phase>
+                                <configuration>
+                                    <target>
+                                        <move
+                                            file="${project.build.directory}/jacoco.exec"
+                                            tofile="${project.build.directory}/jacoco-integration.exec" />
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <configuration>
+                            <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
