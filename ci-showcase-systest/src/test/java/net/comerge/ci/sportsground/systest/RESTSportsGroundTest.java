@@ -24,7 +24,7 @@ public class RESTSportsGroundTest {
         client.getParams().setParameter("http.useragent", "Test Client");
         String endpoint = System.getProperties().getProperty("url");
         if (endpoint == null || endpoint.isEmpty()) {
-            sportsGroundUri = new URI("http://localhost:8080/ci-showcase-server/sportsground", true);
+            sportsGroundUri = new URI("http://localhost:8180/ci-showcase-server/sportsground", true);
         } else {
             sportsGroundUri = new URI(endpoint, true);
         }
