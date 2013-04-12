@@ -262,6 +262,7 @@
                             <filename>${project.build.finalName}.war</filename>
                             <username>uzh</username>
                             <password>ci-showcase</password>
+                            <port>10099</port>
                         </configuration>
                         <executions>
                             <execution>
