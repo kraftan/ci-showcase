@@ -4,19 +4,14 @@
     <groupId>net.comerge.ci</groupId>
     <artifactId>ci-showcase-server</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Comerge CI Showcase</name>
+    <name>CI Showcase</name>
     <packaging>war</packaging>
 
-    <organization>
-        <name>Comerge AG</name>
-        <url>http://www.comerge.net/</url>
-    </organization>
-
     <scm>
-        <url>https://</url>
+        <url>https://github.com/kraftan/ci-showcase</url>
     </scm>
     <ciManagement>
-        <system>Hudson</system>
+        <system>Jenkins</system>
     </ciManagement>
 
     <properties>
@@ -261,8 +256,8 @@
                         <configuration>
                             <filename>${project.build.finalName}.war</filename>
                             <username>uzh</username>
-                            <password>ci-showcase</password>
-                            <port>10099</port>
+                            <password>ci-1showcase</password>
+                            <port>9999</port>
                         </configuration>
                         <executions>
                             <execution>
