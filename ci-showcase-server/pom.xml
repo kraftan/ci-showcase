@@ -29,7 +29,7 @@
         <arqullian-jacoco.version>1.0.0.Alpha2</arqullian-jacoco.version>
         <commons-lang.version>2.4</commons-lang.version>
         <hamcrest.version>1.2.1</hamcrest.version>
-        <jacoco.version>0.5.3.201107060350</jacoco.version>
+        <jacoco.version>0.7.2.201409121644</jacoco.version>
         <javaee-web.version>2.0.0.Final</javaee-web.version>
         <jboss.version>7.1.0.Final</jboss.version>
         <jre.version>1.6</jre.version>
@@ -330,7 +330,7 @@
                         <artifactId>jacoco-maven-plugin</artifactId>
                         <version>${jacoco.version}</version>
                         <configuration>
-                            <dataFile>${project.build.directory}/jacoco-integration.exec</dataFile>
+                            <destFile>${project.build.directory}/jacoco-integration.exec</dataFile>
                         </configuration>
                         <executions>
                             <execution>
