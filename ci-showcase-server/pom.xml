@@ -26,7 +26,7 @@
 
         <!-- Versions -->
         <arquillian.version>1.0.0.CR7</arquillian.version>
-        <arqullian-jacoco.version>1.0.0.Alpha2</arqullian-jacoco.version>
+        <arqullian-jacoco.version>1.0.0.Alpha7</arqullian-jacoco.version>
         <commons-lang.version>2.4</commons-lang.version>
         <hamcrest.version>1.2.1</hamcrest.version>
         <jacoco.version>0.7.2.201409121644</jacoco.version>
