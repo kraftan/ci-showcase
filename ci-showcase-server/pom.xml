@@ -330,7 +330,7 @@
                         <artifactId>jacoco-maven-plugin</artifactId>
                         <version>${jacoco.version}</version>
                         <configuration>
-                            <destFile>${project.build.directory}/jacoco-integration.exec</dataFile>
+                            <destFile>${project.build.directory}/jacoco-integration.exec</destFile>
                         </configuration>
                         <executions>
                             <execution>
