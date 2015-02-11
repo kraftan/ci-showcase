@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.comerge.ci</groupId>
+    <groupId>ch.computerscience.fluri.ci</groupId>
     <artifactId>ci-showcase-server</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>CI Showcase</name>
@@ -257,7 +257,7 @@
                             <filename>${project.build.finalName}.war</filename>
                             <username>uzh</username>
                             <password>ci-1showcase</password>
-                            <port>9999</port>
+                            <port>10099</port>
                         </configuration>
                         <executions>
                             <execution>
@@ -337,28 +337,6 @@
                                 <id>agent</id>
                                 <goals>
                                     <goal>prepare-agent</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <version>${maven-antrun-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <!-- Unfortunatly, we cannot run antrun:run, 
-                                    the antrun plugin has to. Use of a lifecycle phase that does not interfere 
-                                    with any other phase during integration-test -->
-                                <phase>pre-site</phase>
-                                <configuration>
-                                    <target>
-                                        <move
-                                            file="${project.build.directory}/jacoco.exec"
-                                            tofile="${project.build.directory}/jacoco-integration.exec" />
-                                    </target>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
                                 </goals>
                             </execution>
                         </executions>

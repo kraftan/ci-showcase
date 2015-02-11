@@ -1,4 +1,4 @@
-package net.comerge.ci.sportsground.boundary;
+package ch.computerscience.fluri.ci.sportsground.boundary;
 
 import java.util.HashSet;
 import java.util.List;
@@ -17,13 +17,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import net.comerge.ci.sportsground.control.SportsGroundStore;
-import net.comerge.ci.sportsground.entity.SportsGround;
+import ch.computerscience.fluri.ci.sportsground.control.SportsGroundStore;
+import ch.computerscience.fluri.ci.sportsground.entity.SportsGround;
 
 /**
  * REST service for accessing and persisting {@link SportsGround}s.
  * 
- * @author Comerge AG, Beat Fluri
+ * @author Beat Fluri
  */
 @Path("/sportsground")
 @Produces(MediaType.APPLICATION_XML)

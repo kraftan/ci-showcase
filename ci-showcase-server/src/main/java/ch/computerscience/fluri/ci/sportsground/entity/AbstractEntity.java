@@ -1,4 +1,4 @@
-package net.comerge.ci.sportsground.entity;
+package ch.computerscience.fluri.ci.sportsground.entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

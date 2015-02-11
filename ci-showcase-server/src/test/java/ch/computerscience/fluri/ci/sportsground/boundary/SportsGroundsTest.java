@@ -1,4 +1,4 @@
-package net.comerge.ci.sportsground.boundary;
+package ch.computerscience.fluri.ci.sportsground.boundary;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -14,8 +14,8 @@ import javax.validation.Path;
 import javax.validation.Validator;
 import javax.validation.metadata.ConstraintDescriptor;
 
-import net.comerge.ci.sportsground.control.SportsGroundStore;
-import net.comerge.ci.sportsground.entity.SportsGround;
+import ch.computerscience.fluri.ci.sportsground.control.SportsGroundStore;
+import ch.computerscience.fluri.ci.sportsground.entity.SportsGround;
 
 import org.junit.Before;
 import org.junit.Test;

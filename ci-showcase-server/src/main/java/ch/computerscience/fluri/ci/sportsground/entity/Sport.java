@@ -1,4 +1,4 @@
-package net.comerge.ci.sportsground.entity;
+package ch.computerscience.fluri.ci.sportsground.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 /**
  * Represents a kind of a sport users can practice on the Everest platform.
  * 
- * @author Beat Fluri, zubi
+ * @author Beat Fluri
+ * @author zubi
  */
 @Entity
 @NamedQuery(name = Sport.FIND_BY_NAME, query = "from Sport where name = :name")
@@ -20,7 +21,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 public class Sport extends AbstractEntity implements java.io.Serializable {
 
     private static final long serialVersionUID = -5982365216001507442L;
-    private static final String PREFIX = "net.comerge.ci.sportsground.entity.Sport";
+    private static final String PREFIX = "ch.computerscience.fluri.ci.sportsground.entity.Sport";
 
     public static final String FIND_BY_NAME = PREFIX + ".findByName";
 

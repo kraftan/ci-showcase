@@ -1,4 +1,4 @@
-package net.comerge.ci.sportsground.entity;
+package ch.computerscience.fluri.ci.sportsground.entity;
 
 import java.util.Date;
 
@@ -28,7 +28,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 public class SportsGround extends AbstractEntity implements java.io.Serializable {
 
     private static final long serialVersionUID = -3944937037239806691L;
-    private static final String PREFIX = "net.comerge.ci.sportsground.entity.SportsGround";
+    private static final String PREFIX = "ch.computerscience.fluri.ci.sportsground.entity.SportsGround";
 
     public static final String FIND_ALL = PREFIX + ".findAll";
 

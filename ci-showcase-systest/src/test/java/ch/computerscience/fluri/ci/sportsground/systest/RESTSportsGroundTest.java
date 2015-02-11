@@ -1,4 +1,4 @@
-package net.comerge.ci.sportsground.systest;
+package ch.computerscience.fluri.ci.sportsground.systest;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;

@@ -1,4 +1,4 @@
-package net.comerge.ci.sportsground.boundary;
+package ch.computerscience.fluri.ci.sportsground.boundary;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

@@ -1,4 +1,4 @@
-package net.comerge.ci.sportsground.boundary;
+package ch.computerscience.fluri.ci.sportsground.boundary;
 
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
@@ -14,10 +14,10 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import javax.validation.ConstraintViolationException;
 
-import net.comerge.ci.sportsground.control.SportStore;
-import net.comerge.ci.sportsground.control.SportsGroundStore;
-import net.comerge.ci.sportsground.entity.Sport;
-import net.comerge.ci.sportsground.entity.SportsGround;
+import ch.computerscience.fluri.ci.sportsground.control.SportStore;
+import ch.computerscience.fluri.ci.sportsground.control.SportsGroundStore;
+import ch.computerscience.fluri.ci.sportsground.entity.Sport;
+import ch.computerscience.fluri.ci.sportsground.entity.SportsGround;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;

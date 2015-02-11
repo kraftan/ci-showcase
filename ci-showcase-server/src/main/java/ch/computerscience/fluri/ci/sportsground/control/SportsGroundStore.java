@@ -1,4 +1,4 @@
-package net.comerge.ci.sportsground.control;
+package ch.computerscience.fluri.ci.sportsground.control;
 
 import java.util.List;
 
@@ -6,13 +6,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import net.comerge.ci.sportsground.entity.Sport;
-import net.comerge.ci.sportsground.entity.SportsGround;
+import ch.computerscience.fluri.ci.sportsground.entity.Sport;
+import ch.computerscience.fluri.ci.sportsground.entity.SportsGround;
 
 /**
  * Store for accessing and storing persisted {@link SportsGround}s.
  * 
- * @author Comerge AG, Beat Fluri
+ * @author Beat Fluri
  */
 @Stateless
 public class SportsGroundStore {
