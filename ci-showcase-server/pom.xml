@@ -257,7 +257,7 @@
                             <filename>${project.build.finalName}.war</filename>
                             <username>uzh</username>
                             <password>ci-1showcase</password>
-                            <port>10099</port>
+                            <port>9999</port>
                         </configuration>
                         <executions>
                             <execution>
